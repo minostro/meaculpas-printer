@@ -51,5 +51,5 @@ class DocumentoContable(Document):
     self.setData(leftMargin + "    {:>24}".format(total))
 
   def getDecodedString(self, text):
-    return text.decode(ENCODING)
+    return text.encode(ENCODING)
 
