@@ -12,23 +12,19 @@ class DocumentoContable(Document):
 
   def setHeader(self, numeroDocumento):
     self.setData("\n"*7)
-    self.setData("%60s" %numeroDocumento)
+    self.setData("{:<60}".format(numeroDocumento))
 
   def setCliente(self, nombre, rut, direccion, giro, comuna, fechaDocumento):
     self.setData("\n"*8)
-    nombre = self.getDecodedString(nombre)
-    direccion = self.getDecodedString(direccion)
-    giro = self.getDecodedString(giro)
-    comuna = self.getDecodedString(comuna)
+    left_margin = " " * 4
+    nombre = self.getDecodedString(nombre).upper()
+    direccion = self.getDecodedString(direccion).upper()
+    giro = self.getDecodedString(giro).upper()
+    comuna = self.getDecodedString(comuna).upper()
 
-    nombre = "     %-55s" % nombre
-    nombre = nombre[:55]
-
-    direccion = "     %-55s" % direccion
-    direccion = direccion[:55]
-    self.setData(nombre.upper() + " " + rut)
-    self.setData(direccion.upper() + " " + giro.upper())
-    self.setData("     " + comuna.upper() + "\n")
+    self.setData("{:} {:>55} {:}".format(left_margin, nombre, rut))
+    self.setData("{:} {:>55} {:}".format(left_margin, direccion, giro))
+    self.setData("{:} {:}\n".format(left_margin, comuna))
     self.setData(fechaDocumento)
 
   def itemSectionInit(self):
@@ -37,28 +33,22 @@ class DocumentoContable(Document):
   def setItem(self, codigo, descripcion, cantidad, precio_unitario, precio_total):
     self.itemQuantity += 1
     descripcion = self.getDecodedString(descripcion)
-    codigo = "%13s" % str(codigo)
-    codigo = codigo[:13]
-    descripcion = " %-32s" %(descripcion)
-    descripcion = descripcion[:32]
-    cantidad = " %9s"%str(cantidad)
-    precio_unitario = " %9s"%str(precio_unitario)
-    precio_total = " %10s"%str(precio_total)
-    item = "%13s %-32s %9s %9s %10"
-    self.setData(codigo + descripcion + cantidad + precio_unitario + precio_total)
+    item = "{:>13} {:<32} {:>9} {:>9} {:>10}".format(codigo, descripcion, cantidad, precio_unitario, precio_total)
+    self.setData(item)
 
   def setCantidadPalabras(self, cantidadPalabras):
     self.setData("\n"* (22 - self.itemQuantity))
-    self.setData(cantidadPalabras.upper() + " pesos.\n")
+    cantidadPalabras = getDecodeString(cantidadPalabras + " pesos.\n")
+    self.setData(cantidadPalabras.upper())
 
   def setTotales(self, totalNeto, iva, ila13, ila15, ila27, total):
-    leftMargin = " "*48
-    self.setData(leftMargin + "%28s" % totalNeto)
-    self.setData(leftMargin + "    19%" + "%21s" % iva)
-    self.setData(leftMargin + "13%" + "%25s" % ila13)
-    self.setData(leftMargin + "15%" + "%25s" % ila15)
-    self.setData(leftMargin + "27%" + "%25s" % ila27)
-    self.setData(leftMargin + " "*3 + "%25s" % total)
+    leftMargin = " " * 48
+    self.setData(leftMargin + "{:>28}".format(totalNeto))
+    self.setData(leftMargin + "    19% {:>20}".format(iva))
+    self.setData(leftMargin + "13% {:>24}".format(ila13))
+    self.setData(leftMargin + "15% {:>24}".format(ila15))
+    self.setData(leftMargin + "27% {:>24}".format(ila27))
+    self.setData(leftMargin + "    {:>24}".format(total))
 
   def getDecodedString(self, text):
     return text.decode(ENCODING)
