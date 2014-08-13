@@ -1,3 +1,3 @@
 import sys
-sys.path.insert(0,'C:/MeaCulpasPrinter/src')
-from MeaculpasPrinterClient.app import app as application
+sys.path.insert(0,'C:/meaculpas-printer')
+from meaculpas_printer.app import app as application
