@@ -1,7 +1,7 @@
 Hola!
 
-El objetivo de este documento es descrbibir el proceso de inslaci—n
-y configuraci—n de Flask + Apache en Windows:
+El objetivo de este documento es descrbibir el proceso de inslaciâ€”n
+y configuraciâ€”n de Flask + Apache en Windows:
 
 1.- Instalar Apache 2.2 (32 bits) [1]
 2.- Instalar mod_wsgi.so en la carpeta modules de Apache [2]
@@ -14,7 +14,7 @@ LoadModule wsgi_module modules/mod_wsgi.so
 
 <VirtualHost *>
         ServerName meaculpas1.cl
-        WSGIScriptAlias /printer "C:\MeaCulpasPrinter\src\main.wsgi"
+        WSGIScriptAlias /printer "C:\MeaCulpasPrinter\main.wsgi"
         <Directory C:\MeaCulpasPrinter\src>
                 Order deny,allow
                 Allow from all
