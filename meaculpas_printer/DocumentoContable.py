@@ -12,7 +12,7 @@ class DocumentoContable(Document):
 
   def setHeader(self, numeroDocumento):
     self.setData("\n"*7)
-    self.setData("{:<60}".format(numeroDocumento))
+    self.setData("{:>60}".format(numeroDocumento))
 
   def setCliente(self, nombre, rut, direccion, giro, comuna, fechaDocumento):
     self.setData("\n"*8)
@@ -22,8 +22,8 @@ class DocumentoContable(Document):
     giro = self.getDecodedString(giro).upper()
     comuna = self.getDecodedString(comuna).upper()
 
-    self.setData("{:} {:>55} {:}".format(left_margin, nombre[:55], rut))
-    self.setData("{:} {:>55} {:}".format(left_margin, direccion[:55], giro))
+    self.setData("{:} {:<55} {:}".format(left_margin, nombre[:55], rut))
+    self.setData("{:} {:<55} {:}".format(left_margin, direccion[:55], giro))
     self.setData("{:} {:}\n".format(left_margin, comuna))
     self.setData(fechaDocumento)
 
