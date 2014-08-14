@@ -38,7 +38,7 @@ class DocumentoContable(Document):
 
   def setCantidadPalabras(self, cantidadPalabras):
     self.setData("\n"* (22 - self.itemQuantity))
-    cantidadPalabras = self.getDecodeString(cantidadPalabras + " pesos.\n")
+    cantidadPalabras = self.getDecodedString(cantidadPalabras + " pesos.\n")
     self.setData(cantidadPalabras.upper())
 
   def setTotales(self, totalNeto, iva, ila13, ila15, ila27, total):
