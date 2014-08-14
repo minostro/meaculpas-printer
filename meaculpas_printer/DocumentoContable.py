@@ -22,8 +22,8 @@ class DocumentoContable(Document):
     giro = self.getDecodedString(giro).upper()
     comuna = self.getDecodedString(comuna).upper()
 
-    self.setData("{:} {:>55} {:}".format(left_margin, nombre, rut))
-    self.setData("{:} {:>55} {:}".format(left_margin, direccion, giro))
+    self.setData("{:} {:>55} {:}".format(left_margin, nombre[:55], rut))
+    self.setData("{:} {:>55} {:}".format(left_margin, direccion[:55], giro))
     self.setData("{:} {:}\n".format(left_margin, comuna))
     self.setData(fechaDocumento)
 
@@ -33,7 +33,7 @@ class DocumentoContable(Document):
   def setItem(self, codigo, descripcion, cantidad, precio_unitario, precio_total):
     self.itemQuantity += 1
     descripcion = self.getDecodedString(descripcion)
-    item = "{:>13} {:<32} {:>9} {:>9} {:>10}".format(codigo, descripcion, cantidad, precio_unitario, precio_total)
+    item = "{:>13} {:<32} {:>9} {:>9} {:>10}".format(codigo[:13], descripcion[:32], cantidad, precio_unitario, precio_total)
     self.setData(item)
 
   def setCantidadPalabras(self, cantidadPalabras):
