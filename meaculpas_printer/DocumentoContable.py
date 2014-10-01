@@ -41,13 +41,12 @@ class DocumentoContable(Document):
     cantidadPalabras = self.getDecodedString(cantidadPalabras + " pesos.\n")
     self.setData(cantidadPalabras.upper())
 
-  def setTotales(self, totalNeto, iva, ila13, ila15, ila27, total):
+  def setTotales(self, totalNeto, iva, impuestos, total):
     leftMargin = " " * 48
     self.setData(leftMargin + "{:>28}".format(totalNeto))
     self.setData(leftMargin + "    19% {:>20}".format(iva))
-    self.setData(leftMargin + "13% {:>24}".format(ila13))
-    self.setData(leftMargin + "15% {:>24}".format(ila15))
-    self.setData(leftMargin + "27% {:>24}".format(ila27))
+    for impuesto, monto in impuestos.iteritems():
+      self.setData(leftMargin + " {:}% {:>20}".format(impuesto, monto))
     self.setData(leftMargin + "    {:>24}".format(total))
 
   def getDecodedString(self, text):

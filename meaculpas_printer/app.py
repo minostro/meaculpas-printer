@@ -69,9 +69,7 @@ def print_documents():
     documento.setTotales(
         document["neto"],
         document["iva"],
-        document["ila13"],
-        document["ila15"],
-        document["ila27"],
+        document["impuestos"],
         document["total"]
     )
     documentos.append(documento)
