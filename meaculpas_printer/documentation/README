@@ -14,7 +14,7 @@ LoadModule wsgi_module modules/mod_wsgi.so
 
 <VirtualHost *>
         ServerName meaculpas1.cl
-        WSGIScriptAlias /printer "C:\meaculpas-printer\main.wsgi"
+        WSGIScriptAlias / "C:\meaculpas-printer\main.wsgi"
         <Directory C:\meaculpas-printer>
                 Order deny,allow
                 Allow from all
