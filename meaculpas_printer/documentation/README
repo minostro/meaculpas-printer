@@ -24,6 +24,9 @@ LoadModule wsgi_module modules/mod_wsgi.so
 	- Reiniciar Apache
 4.- Instalar Flask: pip install Flask
 5.- Registrar ip de equipo en el router y habilitar forwarding de puertos
+6.- Copiar el archivo `config.cfg.copyme` a `config.cfg` y actualizar la información necesaria.
+  1.- `PRODUCT_ID` y `VENDOR_ID` son los valores que tuviste que haber anotado cuando instalaste el driver de la impresora
+  2.- `ENCODING` es el valor que necesitamos para imprimir correctamente caracteres especiales: `chcp` commando en `cmd` console.
 
 [1] http://mirror.cc.columbia.edu/pub/software/apache//httpd/binaries/win32/httpd-2.2.25-win32-x86-no_ssl.msi
 [2] https://code.google.com/p/modwsgi/downloads/detail?name=mod_wsgi-win32-ap22py27-3.3.so
