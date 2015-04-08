@@ -9,6 +9,7 @@ class DocumentoContable(Document):
   def __init__(self, *args, **kwargs):
     super(DocumentoContable, self).__init__(*args, **kwargs)
     self.itemQuantity = 0
+    self.impuestoQuantity = 0
 
   def setHeader(self, numeroDocumento):
     self.setData("\n"*7)
@@ -40,12 +41,12 @@ class DocumentoContable(Document):
     self.setData("\n"* (20 - self.itemQuantity))
 
   def setDesgloseImpuesto(self, descripcionImpuesto):
-    self.itemQuantity += 1
+    self.impuestoQuantity += 1
     descripcionImpuesto = self.getEncodedString(descripcionImpuesto)
     self.setData(descripcionImpuesto)
 
   def setCantidadPalabras(self, cantidadPalabras):
-    self.setData("\n"* (22 - self.itemQuantity))
+    self.setData("\n"* (2 - self.impuestoQuantity))
     cantidadPalabras = self.getEncodedString(cantidadPalabras + " pesos.\n")
     self.setData(cantidadPalabras.upper())
 
