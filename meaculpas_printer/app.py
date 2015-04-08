@@ -45,6 +45,7 @@ def print_documents():
     cliente = document['cliente']
     orden_compra = document['orden_compra']
     document = document['documento']
+    desglose_impuestos = documento['desglose_impuestos']
 
     documento = DocumentoContable()
     documento.setHeader(orden_compra['numero'])
@@ -65,6 +66,9 @@ def print_documents():
           item['precio'],
           item['precio_total_item']
       )
+    documento.desgloseImpuestosSectionInit()
+    for desglose_impuesto in desglose_impuestos:
+      documento.setDesgloseImpuesto(desglose_impuesto)
     documento.setCantidadPalabras(document['total_palabras'])
     documento.setTotales(
         document["neto"],

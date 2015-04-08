@@ -17,10 +17,10 @@ class DocumentoContable(Document):
   def setCliente(self, nombre, rut, direccion, giro, comuna, fechaDocumento):
     self.setData("\n"*8)
     left_margin = " " * 4
-    nombre = self.getDecodedString(nombre).upper()
-    direccion = self.getDecodedString(direccion).upper()
-    giro = self.getDecodedString(giro).upper()
-    comuna = self.getDecodedString(comuna).upper()
+    nombre = self.getEncodedString(nombre).upper()
+    direccion = self.getEncodedString(direccion).upper()
+    giro = self.getEncodedString(giro).upper()
+    comuna = self.getEncodedString(comuna).upper()
 
     self.setData("{:} {:<55} {:}".format(left_margin, nombre[:55], rut))
     self.setData("{:} {:<55} {:}".format(left_margin, direccion[:55], giro))
@@ -32,13 +32,21 @@ class DocumentoContable(Document):
 
   def setItem(self, codigo, descripcion, cantidad, precio_unitario, precio_total):
     self.itemQuantity += 1
-    descripcion = self.getDecodedString(descripcion)
+    descripcion = self.getEncodedString(descripcion)
     item = "{:>13} {:<32} {:>9} {:>9} {:>10}".format(codigo[:13], descripcion[:32], cantidad, precio_unitario, precio_total)
     self.setData(item)
 
+  def desgloseImpuestosSectionInit(self):
+    self.setData("\n"* (20 - self.itemQuantity))
+
+  def setDesgloseImpuesto(self, descripcionImpuesto):
+    self.itemQuantity += 1
+    descripcionImpuesto = self.getEncodedString(descripcionImpuesto)
+    self.setData(descripcionImpuesto)
+
   def setCantidadPalabras(self, cantidadPalabras):
     self.setData("\n"* (22 - self.itemQuantity))
-    cantidadPalabras = self.getDecodedString(cantidadPalabras + " pesos.\n")
+    cantidadPalabras = self.getEncodedString(cantidadPalabras + " pesos.\n")
     self.setData(cantidadPalabras.upper())
 
   def setTotales(self, totalNeto, iva, impuestos, total):
@@ -49,6 +57,6 @@ class DocumentoContable(Document):
       self.setData(leftMargin + " {:}% {:>20}".format(impuesto, monto))
     self.setData(leftMargin + "    {:>24}".format(total))
 
-  def getDecodedString(self, text):
+  def getEncodedString(self, text):
     return text.encode(ENCODING)
 
