@@ -55,7 +55,8 @@ def print_documents():
         cliente['direccion'],
         cliente['giro'],
         cliente['comuna'],
-        document['fecha_emision']
+        document['fecha_emision'],
+        "Milton Inostroza"
     )
     documento.itemSectionInit()
     for item in items:

@@ -15,17 +15,18 @@ class DocumentoContable(Document):
     self.setData("\n"*7)
     self.setData("{:>60}".format(numeroDocumento))
 
-  def setCliente(self, nombre, rut, direccion, giro, comuna, fechaDocumento):
+  def setCliente(self, nombre, rut, direccion, giro, comuna, fechaDocumento, vendedor):
     self.setData("\n"*8)
     left_margin = " " * 4
     nombre = self.getEncodedString(nombre).upper()
     direccion = self.getEncodedString(direccion).upper()
     giro = self.getEncodedString(giro).upper()
     comuna = self.getEncodedString(comuna).upper()
+    vendedor = self.getEncodedString(vendedor).upper()
 
     self.setData("{:} {:<55} {:}".format(left_margin, nombre[:55], rut))
     self.setData("{:} {:<55} {:}".format(left_margin, direccion[:55], giro))
-    self.setData("{:} {:}\n".format(left_margin, comuna))
+    self.setData("{:} {:<55} {:}\n".format(left_margin, comuna[:55], vendedor))
     self.setData(fechaDocumento)
 
   def itemSectionInit(self):
