@@ -15,7 +15,7 @@ class DocumentoContable(Document):
     self.setData("\n"*7)
     self.setData("{:>60}".format(numeroDocumento))
 
-  def setCliente(self, nombre, rut, direccion, giro, comuna, fechaDocumento, vendedor):
+  def setCliente(self, nombre, rut, direccion, giro, comuna, fechaDocumento, fechaVencimiento, vendedor):
     self.setData("\n"*8)
     left_margin = " " * 4
     nombre = self.getEncodedString(nombre).upper()
@@ -27,7 +27,7 @@ class DocumentoContable(Document):
     self.setData("{:} {:<55} {:}".format(left_margin, nombre[:55], rut))
     self.setData("{:} {:<55} {:}".format(left_margin, direccion[:55], giro[:16]))
     self.setData("{:} {:<55} {:}\n".format(left_margin, comuna[:55], vendedor[:16]))
-    self.setData(fechaDocumento)
+    self.setData("{:} {:>4}".format(fechaDocumento, fechaVencimiento)
 
   def itemSectionInit(self):
     self.setData("\n"*2)

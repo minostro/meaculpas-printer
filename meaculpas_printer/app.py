@@ -56,6 +56,7 @@ def print_documents():
         cliente['giro'],
         cliente['comuna'],
         document['fecha_emision'],
+        document['fecha_vencimiento'],
         document['vendedor']
     )
     documento.itemSectionInit()
