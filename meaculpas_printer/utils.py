@@ -14,7 +14,7 @@ def register_error_logger(app):
             '[Sistema Impresion] ' + date.today().strftime("%d-%m-%Y"),
             ADMINS,
             'Error!',
-            ('sistema@crecelibre.cl', 's1st3m4'),
+            ('sistema@crecelibre.cl', '*****'),
             tuple()
         )
         mail_handler.setLevel(logging.ERROR)
