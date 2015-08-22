@@ -25,7 +25,7 @@ class DocumentoContable(Document):
     vendedor = self.getEncodedString(vendedor).upper()
 
     self.setData("{:} {:<55} {:}".format(left_margin, nombre[:55], rut))
-    self.setData("{:} {:<55} {:}".format(left_margin, direccion[:55], giro))
+    self.setData("{:} {:<55} {:}".format(left_margin, direccion[:55], giro[:16]))
     self.setData("{:} {:<55} {:}\n".format(left_margin, comuna[:55], vendedor[:16]))
     self.setData(fechaDocumento)
 
